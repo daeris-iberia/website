@@ -96,13 +96,13 @@ def _merge_views(env, xmlids):
 
 
 def post_init_hook(cr, registry):
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        is_website_sale_installed = (
-            env["ir.module.module"].search_count(
-                [("name", "=", "website_sale"), ("state", "=", "installed")]
-            )
-            > 0
+    #with api.Environment.manage():
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    is_website_sale_installed = (
+        env["ir.module.module"].search_count(
+            [("name", "=", "website_sale"), ("state", "=", "installed")]
         )
-        if is_website_sale_installed:
-            _merge_views(env, ["website_sale.terms"])
+        > 0
+    )
+    if is_website_sale_installed:
+        _merge_views(env, ["website_sale.terms"])
