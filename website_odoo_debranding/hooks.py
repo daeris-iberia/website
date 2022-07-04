@@ -14,6 +14,6 @@ def post_init_hook(cr, registry):
     # For CI/CD avoids problems testing modules that removes/positioning elements
     # that other modules uses in their tests.
     if config["test_enable"] or config["test_file"]:
-        with api.Environment.manage():
-            env = api.Environment(cr, SUPERUSER_ID, {})
-            env.ref("website_odoo_debranding.layout_footer_copyright").active = False
+        #with api.Environment.manage():
+        env = api.Environment(cr, SUPERUSER_ID, {})
+        env.ref("website_odoo_debranding.layout_footer_copyright").active = False
